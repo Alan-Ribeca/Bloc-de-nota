@@ -89,6 +89,10 @@
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+.edit-post:hover{
+  background-color: rgb(0, 0, 253);
+}
+
 .edit-tooltip {
   position: absolute;
   top: 0px;
@@ -104,34 +108,8 @@
   width: 150px;
 }
 
-.edit-tooltip::before {
-  position: absolute;
-  content: "";
-  height: 8px;
-  width: 8px;
-  background: #ffffff;
-  bottom: -3px;
-  left: 50%;
-  transform: translate(-50%) rotate(45deg);
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.edit-post:hover .edit-tooltip {
-  top: -45px;
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
 .edit-icon {
   font-size: 22px;
-}
-
-.edit-post:hover,
-.edit-post:hover .edit-tooltip,
-.edit-post:hover .edit-tooltip::before {
-  background: linear-gradient(320deg, rgb(3, 77, 146), rgb(0, 60, 255));
-  color: #ffffff;
 }
 
 /* PAPELERA */
@@ -165,7 +143,7 @@
 
 .button:hover {
   transition-duration: 0.3s;
-  background-color: rgb(255, 69, 69);
+  background-color: rgb(0, 0, 253);
   align-items: center;
   gap: 0;
 }
