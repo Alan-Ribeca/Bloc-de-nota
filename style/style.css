@@ -1,0 +1,28 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 97vh;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.linea {
+  border: 0;
+  height: 1px;
+  background: #999999;
+  box-shadow: 0 0px 2px 0px #6e6e6e;
+}
+
+.bloc {
+  flex: 1;
+  height: 400px;
+}
+
+
+h1{
+  color: #488AFF;
+}
