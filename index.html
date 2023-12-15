@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/footer.css">
     <link rel="stylesheet" href="./style/nav.css">
+    <link rel="stylesheet" href="./style/bloc.css">
     <title>Bloc de notas</title>
 </head>
 
@@ -35,12 +36,42 @@
         <hr class="linea">
     </span>
     <main class="bloc">
-        <section class="notas">
+        <section class="notasBloc">
             <div class="containerCard">
-
+                <section class="titulo">
+                    <img src="./img-icons/flecha-hacia-abajo.png" alt="img de una flecha" class="flechaBloc">
+                    <input type="text" placeholder="Título" class="titulo-Bloc">
+                    <img src="./img-icons/eliminar.png" alt="img de un tacho de basura" class="Eliminar">
+                </section>
+                <section class="accesorios">
+                    <form class="font-weight">
+                        <select name="font" class="select">
+                            <option value="pequeño">Pequeño</option>
+                            <option value="normal" selected>Normal</option>
+                            <option value="grande">Grande</option>
+                            <option value="enorme">Enorme</option>
+                        </select>
+                    </form>
+                    <form class="font-size">
+                            <select name="tipoLetra" class="select">
+                                <option value="Sans-Serif">Sans-Serif</option>
+                                <option value="">Críquet</option>
+                                <option value="">Básquetbol</option>
+                                <option value="">Hockey</option>
+                                <option value="">Tenis</option>
+                            </select>
+                    </form>
+                    <div class="letras">
+                        <p class="negrita">B</p>
+                        <p class="subrayar">U</p>
+                        <p class="tachado">S</p>            
+                    </div>
+                </section>
+                <div class="divInputNota">
+                    <textarea placeholder="Escribe una nota" class="textarea"></textarea>
+                </div>
             </div>
         </section>
-
         <section class="lapiz">
             <button class="editBtn">
                 <svg height="1em" viewBox="0 0 512 512">
@@ -51,7 +82,6 @@
             </button>
         </section>
     </main>
-
     <span>
         <hr class="lineaFooter">
     </span>
@@ -64,7 +94,6 @@
         </div>
         <div class="ajustes">
             <div class="edit-post">
-                <span class="edit-tooltip">Edit Post</span>
                 <span class="edit-icon">⚙️</span>
             </div>
             <span class="p-footer">Ajustes</span>

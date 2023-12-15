@@ -162,6 +162,10 @@
   width:auto;
 }
 
+.footer span{
+  font-size: small;
+}
+
 .notas, .ajustes, .papelera {
   display: flex;
   flex-direction: column;

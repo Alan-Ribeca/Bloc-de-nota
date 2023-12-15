@@ -2,6 +2,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 97vh;
+  margin: 0;
+  padding: 0;
 }
 
 .nav {
@@ -17,9 +19,14 @@ body {
   box-shadow: 0 0px 2px 0px #6e6e6e;
 }
 
+.lineaFooter{
+  height: 1px;
+  background-color: #d3b8b8;
+  box-shadow: 1px 1px 11px 0 #6e6e6e;
+}
 .bloc {
   flex: 1;
-  height: 400px;
+  height: 100vh;
 }
 
 

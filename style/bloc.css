@@ -1,0 +1,62 @@
+.titulo{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.Eliminar{
+    margin-right: 10px;
+}
+
+.titulo-Bloc{
+    width: 60%;
+    border: none;
+    font-size: 30px;
+}
+
+.titulo-Bloc:focus{
+    outline: none;
+}
+
+.accesorios{
+    display: flex;
+    align-items: center;
+}
+
+.select{
+    height: 44px;
+    border: none;
+    font-size:small;
+    margin-right: 15px;
+}
+
+.letras p{
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 25px;
+}
+
+.negrita{
+    font-weight: bold;
+}
+.subrayar{
+    text-decoration: underline;
+}
+.tachado{
+    text-decoration: line-through;
+}
+
+.divInputNota{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.textarea{
+    width: 98%;
+    height:660px;
+    border: none;
+}
+
+.textarea:focus{
+    outline: none;
+}
