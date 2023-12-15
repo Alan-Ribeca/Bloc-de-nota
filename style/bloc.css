@@ -36,6 +36,16 @@
     margin-right: 25px;
 }
 
+.letras p:hover{
+    cursor: pointer;
+    color: #488AFF;
+}
+
+select:hover{
+    cursor: pointer;
+    color: #488AFF;
+}
+
 .negrita{
     font-weight: bold;
 }

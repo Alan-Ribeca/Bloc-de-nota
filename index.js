@@ -1,13 +1,15 @@
-// ocultar el block y que aparezca cuando se le hace click al lapiz
+// variables
 const botonLapiz = document.querySelector(".editBtn");
 const bloc = document.querySelector(".notasBloc");
 const flechaGuardar = document.querySelector(".flechaBloc");
 const divCard = document.querySelector(".card")
-console.log(divCard)
 
+// addEventListener
 botonLapiz.addEventListener("click", () => {
     clickLapiz();
 })
+
+// funciones
 
 bloc.style.display = "none";
 botonLapiz.style.display = "block"
@@ -39,11 +41,15 @@ function clickFlecha() {
     bloc.style.display = "none"
     botonLapiz.style.display = "block"
 
-    // guardar los datos del input en localStorage
-    const inputBloc = document.querySelector(".textarea")
+    // guardar los datos del input en localStorage 
+    const inputBloc = document.querySelector(".textarea");
     localStorage.setItem("inputBloc", inputBloc.value);
-    
+    const h1Card = document.querySelector(".titulo-Bloc");
+    localStorage.setItem("h1Card", h1Card.value);
+
+    // resetear los input
     inputBloc.value = "";
+    h1Card.value = "";
     
     // creo el contenedor de las card
     const contenedorBloc = document.createElement("div");
@@ -51,14 +57,25 @@ function clickFlecha() {
     
     // obtengo los datos del localStorage
     let datos = localStorage.getItem("inputBloc");
+    let datosH1 = localStorage.getItem("h1Card");
     
-    contenedorBloc.textContent = datos;
-    
+    // creo el h1, lo completo con los datos y lo agrego
+    const h1Input = document.createElement("H1");
+    h1Input.classList.add("h1Input");
+    h1Input.textContent = datosH1;
+    contenedorBloc.appendChild(h1Input)
+
+    // creo un elemento P para el texto, lo completo con los datos y lo agrego
+    const pInput = document.createElement("P");
+    pInput.classList.add("pInput");
+    pInput.textContent = datos;
+    contenedorBloc.appendChild(pInput);
+
+    // agrego los dos input al html
     const divHTML = document.querySelector(".cardEchas");
-    divHTML.appendChild(contenedorBloc)
-    
+    divHTML.appendChild(contenedorBloc);
+
     if(divCard.style.display === "none") {
         divCard.style.display = "block"
     }
-    
 }
