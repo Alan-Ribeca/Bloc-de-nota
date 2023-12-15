@@ -11,6 +11,7 @@ botonLapiz.addEventListener("click", () => {
 
 bloc.style.display = "none";
 botonLapiz.style.display = "block"
+divCard.style.display = "block"
 function clickLapiz(){
     if(bloc.style.display === "none") {
         bloc.style.display = "block"
@@ -23,6 +24,10 @@ function clickLapiz(){
     } else {
         botonLapiz.style.display = "block"
     }
+
+    if(divCard.style.display === "block") {
+        divCard.style.display = "none"
+    } 
 }
 
 flechaGuardar.addEventListener("click", () => {
@@ -37,17 +42,23 @@ function clickFlecha() {
     // guardar los datos del input en localStorage
     const inputBloc = document.querySelector(".textarea")
     localStorage.setItem("inputBloc", inputBloc.value);
-
+    
+    inputBloc.value = "";
+    
     // creo el contenedor de las card
     const contenedorBloc = document.createElement("div");
     contenedorBloc.classList.add("cardConTexto")
-
+    
     // obtengo los datos del localStorage
     let datos = localStorage.getItem("inputBloc");
-
+    
     contenedorBloc.textContent = datos;
-
+    
     const divHTML = document.querySelector(".cardEchas");
     divHTML.appendChild(contenedorBloc)
-
+    
+    if(divCard.style.display === "none") {
+        divCard.style.display = "block"
+    }
+    
 }
