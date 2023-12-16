@@ -81,6 +81,19 @@ function clickLapiz() {
     if (divCard.style.display === "block") {
         divCard.style.display = "none"
     }
+
+    // Restablecer los estilos de la letra a los valores predeterminados
+    inputBloc.style.fontWeight = "normal";
+    inputBloc.style.textDecoration = "none";
+    inputBloc.style.fontSize = "medium";
+    inputBloc.style.fontFamily = "Arial";
+
+    // Restablecer el valor del selector de tamaño a "normal" y el de letra a "arial"
+    selecTamaño.value = "normal";
+    selecLetra.value = "Arial"
+
+    // Restablecer idActual a null
+    idActual = null;
 }
 
 function clickFlecha() {
@@ -99,14 +112,29 @@ function clickFlecha() {
         // Actualizar contenido de la tarjeta existente
         tarjetaExistente.h1 = h1Card.value;
         tarjetaExistente.p = inputBloc.value;
+
+        // Agregar estilos a la tarjeta existente
+        tarjetaExistente.fontWeight = inputBloc.style.fontWeight;
+        tarjetaExistente.textDecoration = inputBloc.style.textDecoration;
+        tarjetaExistente.fontSize = inputBloc.style.fontSize;
+        tarjetaExistente.fontFamily = inputBloc.style.fontFamily;
+        tarjetaExistente.tamaño = selecTamaño.value;
+        tarjetaExistente.tipo = selecLetra.value;
     } else {
-        // Agrega los datos de la nueva tarjeta al array
+        // Agrega los datos y estilos de la nueva tarjeta al array
         tarjetas.push({
             id: ++cardId,
             h1: h1Card.value,
-            p: inputBloc.value
+            p: inputBloc.value,
+            fontWeight: inputBloc.style.fontWeight,
+            textDecoration: inputBloc.style.textDecoration,
+            fontSize: inputBloc.style.fontSize,
+            fontFamily: inputBloc.style.fontFamily,
+            tamaño: selecTamaño.value,
+            tipo: selecLetra.value,
         });
     }
+
     // Guarda el array actualizado 
     localStorage.setItem("tarjetas", JSON.stringify(tarjetas));
 
@@ -131,33 +159,53 @@ function editarCard(id) {
     // Asignar los valores de la tarjeta seleccionada a los elementos correspondientes
     const h1Bloc = document.querySelector(".titulo-Bloc");
     const inputBloc = document.querySelector(".textarea");
-
     h1Bloc.value = tarjetaSeleccionada.h1;
     inputBloc.value = tarjetaSeleccionada.p;
+    selecTamaño.value = tarjetaSeleccionada.tamaño
+    selecLetra.value = tarjetaSeleccionada.tipo
 
     // ocultar las notas y mostrar el editor
     const contenedorBloc = document.getElementById("card" + id);
     contenedorBloc.style.display = "none";
-
     bloc.style.display = "block";
     botonLapiz.style.display = "none";
     divCard.style.display = "none";
 
     // Establecer idActual al id de la tarjeta que se está editando
-    idActual = id;
+    idActual = id
+
+    const tarjetaExistente = tarjetas.find(tarjeta => tarjeta.id === idActual);
+    if (tarjetaExistente) {
+        // Aplica los estilos guardados a inputBloc
+        inputBloc.style.fontWeight = tarjetaExistente.fontWeight;
+        inputBloc.style.textDecoration = tarjetaExistente.textDecoration;
+        inputBloc.style.fontSize = tarjetaExistente.fontSize;
+        inputBloc.style.fontFamily = tarjetaExistente.fontFamily;
+    }
 }
 
-
-function actualizarTarjeta(id, nuevoH1, nuevoP) {
+function actualizarTarjeta(id) {
     const tarjetaExistente = tarjetas.find(tarjeta => tarjeta.id === id);
 
     if (tarjetaExistente) {
         // Actualizar contenido de la tarjeta existente
-        tarjetaExistente.h1 = nuevoH1;
-        tarjetaExistente.p = nuevoP;
-
-        // Guardar el array actualizado en localStorage
-        localStorage.setItem("tarjetas", JSON.stringify(tarjetas));
+        tarjetaExistente.h1 = h1Card.value;
+        tarjetaExistente.p = inputBloc.value;
+        tarjetaExistente.fontWeight = inputBloc.style.fontWeight;
+        tarjetaExistente.textDecoration = inputBloc.style.textDecoration;
+        tarjetaExistente.fontSize = inputBloc.style.fontSize;
+        tarjetaExistente.fontFamily = inputBloc.style.fontFamily;
+    } else {
+        // Agrega los datos de la nueva tarjeta al array
+        tarjetas.push({
+            id: ++cardId,
+            h1: h1Card.value,
+            p: inputBloc.value,
+            fontWeight: inputBloc.style.fontWeight,
+            textDecoration: inputBloc.style.textDecoration,
+            fontSize: inputBloc.style.fontSize,
+            fontFamily: inputBloc.style.fontFamily,
+        });
     }
 }
 
@@ -214,11 +262,12 @@ function mostrarPapelera() {
 
 
 // TODO LO QUE ES DENTRO DEL BLOC (NEGRITA, TAMAÑO Y ESAS COSAS)
-const basuraBloc = document.querySelector(".Eliminar");
+const inputBloc = document.querySelector(".textarea");
+const selecTamaño = document.querySelector(".select");
+const selecLetra = document.querySelector(".selectLetra");
 const letraNegra = document.querySelector(".negrita");
 const letraSubrayar = document.querySelector(".subrayar");
 const letraTachado = document.querySelector(".tachado");
-const inputBloc = document.querySelector(".textarea");
 let enBold = false;
 let enSubrayado = false;
 let enTachado = false;
@@ -233,26 +282,6 @@ letraNegra.addEventListener("click", () => {
     }
 })
 
-
-// letraSubrayar.addEventListener("click", () => {
-//     if(enSubrayado) {
-//         inputBloc.style.textDecoration = "none";
-//         enSubrayado = false
-//     } else {
-//         inputBloc.style.textDecoration = "underline";
-//         enSubrayado = true
-//     }
-// })
-
-// letraTachado.addEventListener("click", () => {
-//     if(enTachado) {
-//         inputBloc.style.textDecoration = "none";
-//         enTachado = false
-//     } else {
-//         inputBloc.style.textDecoration = "line-through";
-//         enTachado = true;
-//     }
-// })
 letraSubrayar.addEventListener("click", () => {
     enSubrayado = !enSubrayado;
     actualizarEstilo();
@@ -273,3 +302,48 @@ function actualizarEstilo() {
     }
     inputBloc.style.textDecoration = estilo;
 }
+
+selecTamaño.addEventListener("change", () => {
+    let tamaño = selecTamaño.value;
+
+    switch (tamaño) {
+        case "pequeño":
+            inputBloc.style.fontSize = "12px";
+            break;
+        case "normal":
+            inputBloc.style.fontSize = "16px";
+            break;
+        case "grande":
+            inputBloc.style.fontSize = "20px";
+            break;
+        case "enorme":
+            inputBloc.style.fontSize = "28px";
+            break;
+        default:
+            inputBloc.style.fontSize = "16px";
+    }
+});
+
+selecLetra.addEventListener("change", () => {
+    let fuente = selecLetra.value;
+
+    switch (fuente) {
+        case "Arial":
+            inputBloc.style.fontFamily = "Arial";
+            break;
+        case "Verdana":
+            inputBloc.style.fontFamily = "Verdana";
+            break;
+        case "Courier New":
+            inputBloc.style.fontFamily = "Courier New";
+            break;
+        case "Georgia":
+            inputBloc.style.fontFamily = "Georgia";
+            break;
+        case "Times New Roman":
+            inputBloc.style.fontFamily = 'Times New Roman';
+            break;
+        default:
+            inputBloc.style.fontFamily = "Arial";
+    }
+});

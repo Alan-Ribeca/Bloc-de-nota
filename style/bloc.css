@@ -30,6 +30,12 @@
     font-size:small;
     margin-right: 15px;
 }
+.selectLetra {
+    height: 44px;
+    border: none;
+    font-size:small;
+    margin-right: 15px;
+}
 
 .letras p{
     display: inline-block;
