@@ -49,6 +49,12 @@ function generarTarjetas() {
             botonEliminar(tarjeta.id)
         })
 
+        contenedorBloc.addEventListener("click", (event) => {
+            if (event.target !== btnDelete) {
+                editarCard()
+            }
+        });
+
         contenedorBloc.appendChild(btnDelete);
         divHTML.appendChild(contenedorBloc);
     }
@@ -105,6 +111,11 @@ function clickFlecha() {
     if (divCard.style.display === "none") {
         divCard.style.display = "block"
     }
+}
+
+
+function editarCard() {
+    console.log("hola")
 }
 
 function botonEliminar(id) {
