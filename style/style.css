@@ -24,12 +24,12 @@ body {
   background-color: #d3b8b8;
   box-shadow: 1px 1px 11px 0 #6e6e6e;
 }
+
 .bloc {
   flex: 1;
   height: 100vh;
 }
 
-
-h1{
+.h1Principal{
   color: #488AFF;
 }

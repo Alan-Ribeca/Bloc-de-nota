@@ -1,3 +1,4 @@
+const papeleraDiv = document.querySelector(".papeleraEchas");
 let localPapelera = JSON.parse(localStorage.getItem("localPapelera")) || [];
 
 function cargarLocalPapelera() {
@@ -10,7 +11,6 @@ window.onload = function () {
 };
 
 function mostrarLocalPapelera() {
-    const papeleraDiv = document.querySelector(".papeleraEchas");
     papeleraDiv.innerHTML = "";
 
     for (let tarjeta of localPapelera) {
@@ -45,6 +45,10 @@ function mostrarLocalPapelera() {
         contenedorBloc.appendChild(btnDelete);
         papeleraDiv.appendChild(contenedorBloc);
     }
+
+    if(localPapelera.length === 0) {
+        mostrarMensaje(`Papelera vacia`)
+    }
 }
 
 function editarCard(id) {
@@ -60,4 +64,12 @@ function botonEliminar(id) {
 
         mostrarLocalPapelera();
     }
+}
+
+function mostrarMensaje(mensaje) {
+    const mensajeVacio = document.createElement("h1");
+    mensajeVacio.classList.add("msjPapelera");
+    mensajeVacio.textContent = mensaje
+
+    papeleraDiv.appendChild(mensajeVacio)
 }

@@ -188,7 +188,13 @@ a{
   text-decoration: none;
 }
 
+/* css de papelera */
 .papeleraEchas{
   flex: 1;
   height: 100vh;
+}
+
+.msjPapelera{
+  display: flex;
+  justify-content: center;
 }
