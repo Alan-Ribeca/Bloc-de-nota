@@ -1,7 +1,7 @@
 .titulo{
     display: flex;
-    justify-content: space-between;
     height: 50px;
+    
 }
 
 .Eliminar{
@@ -9,7 +9,8 @@
 }
 
 .titulo-Bloc{
-    width: 60%;
+    margin-left: 2%;
+    width: 100%;
     border: none;
     font-size: 30px;
 }

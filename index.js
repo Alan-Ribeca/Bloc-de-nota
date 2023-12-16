@@ -126,8 +126,6 @@ function clickFlecha() {
 }
 
 function editarCard(id) {
-    console.log(`Click en la tarjeta con ID: ${id}`);
-
     const tarjetaSeleccionada = tarjetas.find(tarjeta => tarjeta.id === id);
 
     // Asignar los valores de la tarjeta seleccionada a los elementos correspondientes
@@ -214,3 +212,64 @@ function mostrarPapelera() {
     }
 }
 
+
+// TODO LO QUE ES DENTRO DEL BLOC (NEGRITA, TAMAÑO Y ESAS COSAS)
+const basuraBloc = document.querySelector(".Eliminar");
+const letraNegra = document.querySelector(".negrita");
+const letraSubrayar = document.querySelector(".subrayar");
+const letraTachado = document.querySelector(".tachado");
+const inputBloc = document.querySelector(".textarea");
+let enBold = false;
+let enSubrayado = false;
+let enTachado = false;
+
+letraNegra.addEventListener("click", () => {
+    if (enBold) {
+        inputBloc.style.fontWeight = 'normal';
+        enBold = false;
+    } else {
+        inputBloc.style.fontWeight = 'bold';
+        enBold = true;
+    }
+})
+
+
+// letraSubrayar.addEventListener("click", () => {
+//     if(enSubrayado) {
+//         inputBloc.style.textDecoration = "none";
+//         enSubrayado = false
+//     } else {
+//         inputBloc.style.textDecoration = "underline";
+//         enSubrayado = true
+//     }
+// })
+
+// letraTachado.addEventListener("click", () => {
+//     if(enTachado) {
+//         inputBloc.style.textDecoration = "none";
+//         enTachado = false
+//     } else {
+//         inputBloc.style.textDecoration = "line-through";
+//         enTachado = true;
+//     }
+// })
+letraSubrayar.addEventListener("click", () => {
+    enSubrayado = !enSubrayado;
+    actualizarEstilo();
+});
+
+letraTachado.addEventListener("click", () => {
+    enTachado = !enTachado;
+    actualizarEstilo();
+});
+
+function actualizarEstilo() {
+    let estilo = '';
+    if (enSubrayado) {
+        estilo += 'underline ';
+    }
+    if (enTachado) {
+        estilo += 'line-through ';
+    }
+    inputBloc.style.textDecoration = estilo;
+}
