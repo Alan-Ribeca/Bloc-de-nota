@@ -6,9 +6,10 @@ const divCard = document.querySelector(".card");
 let tarjetas = JSON.parse(localStorage.getItem("tarjetas")) || [];
 let cardId = tarjetas.length;
 let papelera = [];
+let idActual = null;
+
 
 // addEventListener
-
 window.onload = function () {
     generarTarjetas();
 }
@@ -51,7 +52,7 @@ function generarTarjetas() {
 
         contenedorBloc.addEventListener("click", (event) => {
             if (event.target !== btnDelete) {
-                editarCard()
+                editarCard(tarjeta.id)
             }
         });
 
@@ -91,14 +92,22 @@ function clickFlecha() {
     const inputBloc = document.querySelector(".textarea");
     const h1Card = document.querySelector(".titulo-Bloc");
 
-    // Agrega los datos de la nueva tarjeta al array
-    tarjetas.push({
-        id: ++cardId,
-        h1: h1Card.value,
-        p: inputBloc.value
-    });
+    // Buscar la tarjeta existente en el array
+    const tarjetaExistente = tarjetas.find(tarjeta => tarjeta.id === idActual);
 
-    // Guarda el array actualizado en localStorage
+    if (tarjetaExistente) {
+        // Actualizar contenido de la tarjeta existente
+        tarjetaExistente.h1 = h1Card.value;
+        tarjetaExistente.p = inputBloc.value;
+    } else {
+        // Agrega los datos de la nueva tarjeta al array
+        tarjetas.push({
+            id: ++cardId,
+            h1: h1Card.value,
+            p: inputBloc.value
+        });
+    }
+    // Guarda el array actualizado 
     localStorage.setItem("tarjetas", JSON.stringify(tarjetas));
 
     // resetear los input
@@ -111,11 +120,47 @@ function clickFlecha() {
     if (divCard.style.display === "none") {
         divCard.style.display = "block"
     }
+
+    // Restablecer idActual a null después de guardar
+    idActual = null;
+}
+
+function editarCard(id) {
+    console.log(`Click en la tarjeta con ID: ${id}`);
+
+    const tarjetaSeleccionada = tarjetas.find(tarjeta => tarjeta.id === id);
+
+    // Asignar los valores de la tarjeta seleccionada a los elementos correspondientes
+    const h1Bloc = document.querySelector(".titulo-Bloc");
+    const inputBloc = document.querySelector(".textarea");
+
+    h1Bloc.value = tarjetaSeleccionada.h1;
+    inputBloc.value = tarjetaSeleccionada.p;
+
+    // ocultar las notas y mostrar el editor
+    const contenedorBloc = document.getElementById("card" + id);
+    contenedorBloc.style.display = "none";
+
+    bloc.style.display = "block";
+    botonLapiz.style.display = "none";
+    divCard.style.display = "none";
+
+    // Establecer idActual al id de la tarjeta que se está editando
+    idActual = id;
 }
 
 
-function editarCard() {
-    console.log("hola")
+function actualizarTarjeta(id, nuevoH1, nuevoP) {
+    const tarjetaExistente = tarjetas.find(tarjeta => tarjeta.id === id);
+
+    if (tarjetaExistente) {
+        // Actualizar contenido de la tarjeta existente
+        tarjetaExistente.h1 = nuevoH1;
+        tarjetaExistente.p = nuevoP;
+
+        // Guardar el array actualizado en localStorage
+        localStorage.setItem("tarjetas", JSON.stringify(tarjetas));
+    }
 }
 
 function botonEliminar(id) {

@@ -36,11 +36,20 @@ function mostrarLocalPapelera() {
             botonEliminar(tarjeta.id)
         })
 
+        contenedorBloc.addEventListener("click", (event) => {
+            if (event.target !== btnDelete) {
+                editarCard(tarjeta.id)
+            }
+        });
+
         contenedorBloc.appendChild(btnDelete);
         papeleraDiv.appendChild(contenedorBloc);
     }
 }
 
+function editarCard(id) {
+    console.log(`Click en la tarjeta con ID: ${id}`);
+}
 
 function botonEliminar(id) {
     const index = localPapelera.findIndex(tarjeta => tarjeta.id === id);
