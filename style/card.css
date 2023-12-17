@@ -10,37 +10,37 @@
 .cardConTexto:hover {
   box-shadow: 0px 1px 5px 2px #488aff;
   cursor: pointer;
-  transition: all 0.5s ease; 
+  transition: all 0.5s ease;
 }
 
-.h1Input{
-  white-space: nowrap;      
-  overflow: hidden;        
-  text-overflow: ellipsis;  
+.h1Input {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: black;
 }
 
-.pInput{
-  white-space: nowrap;     
-  overflow: hidden;         
-  text-overflow: ellipsis;  
+.pInput {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.deleteCard{
+.deleteCard {
   position: absolute;
   right: 0;
   bottom: 0;
-  background-color: #ff6347; 
-  color: white; 
+  background-color: #ff6347;
+  color: white;
   border: none;
-  padding: 10px 20px; 
-  text-align: center; 
-  text-decoration: none; 
-  font-size: 16px; 
-  transition: all 0.3s ease; 
-  cursor: pointer; 
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  cursor: pointer;
   border-radius: 5px;
 }
 .deleteCard:hover {
-  background-color: #ff4500; 
+  background-color: #ff4500;
 }

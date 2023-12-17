@@ -8,7 +8,6 @@ let cardId = tarjetas.length;
 let papelera = [];
 let idActual = null;
 
-
 // addEventListener
 window.onload = function () {
     generarTarjetas();
@@ -347,3 +346,7 @@ selecLetra.addEventListener("change", () => {
             inputBloc.style.fontFamily = "Arial";
     }
 });
+
+// EL NAV (EL PALITO Y EL BUSCADOR)     CAMBIA LA CLASE PERO NO VUELVE A PONER LA CLASE ORIGINAL (ARREGLARLO, LO DEJE ASI POPRQUE ME FUI A BAÑAR)
+
+
