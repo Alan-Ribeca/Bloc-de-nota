@@ -44,3 +44,9 @@
 .deleteCard:hover {
   background-color: #ff4500;
 }
+
+/* buscador */
+.mensaje-busqueda {
+  text-align: center;
+  font-weight: bold;
+}

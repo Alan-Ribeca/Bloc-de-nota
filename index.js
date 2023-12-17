@@ -347,6 +347,49 @@ selecLetra.addEventListener("change", () => {
     }
 });
 
-// EL NAV (EL PALITO Y EL BUSCADOR)     CAMBIA LA CLASE PERO NO VUELVE A PONER LA CLASE ORIGINAL (ARREGLARLO, LO DEJE ASI POPRQUE ME FUI A BAÑAR)
 
+// BUSCADOR
+const buscador = document.querySelector(".input");
+const main = document.querySelector(".bloc");
 
+buscador.addEventListener("keyup", (e) => {
+    const busqueda = e.target.value.toLowerCase();
+    const cards = document.querySelectorAll(".cardConTexto");
+    let resultadoBusqueda = false;
+
+    if (e.key === "Escape"){
+        e.target.value = "";
+        for (let card of cards) {
+            card.style.display = "";
+        }
+    } else {
+        for (let card of cards) {
+            const h1 = card.querySelector(".h1Input").textContent.toLowerCase();
+            if (h1.includes(busqueda)) {
+                card.style.display = "";
+                resultadoBusqueda = true;
+            } else {
+                card.style.display = "none";
+            }
+        }
+    }
+
+    if(!resultadoBusqueda && busqueda !== "" && e.key !== "Escape") {
+        if (!document.querySelector(".mensaje-busqueda")) {
+            const TituloBusqueda = document.createElement("p");
+            TituloBusqueda.textContent = "Sin coincidencias. Revisa tu búsqueda.";
+            TituloBusqueda.classList.add("mensaje-busqueda");
+    
+            main.appendChild(TituloBusqueda);
+        }
+    } else {
+        const mensaje = document.querySelector(".mensaje-busqueda");
+        if (mensaje) {
+            mensaje.remove();
+        }
+    }
+});
+
+buscador.addEventListener("blur", function() {
+    this.value = ""; 
+});
