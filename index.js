@@ -1,3 +1,4 @@
+import {} from "./js/posicion.js"
 // variables
 const botonLapiz = document.querySelector(".editBtn");
 const bloc = document.querySelector(".notasBloc");
