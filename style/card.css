@@ -50,3 +50,11 @@
   text-align: center;
   font-weight: bold;
 }
+
+
+/* display grid cuando apretan para cambiar la forma  */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 15px;
+}
