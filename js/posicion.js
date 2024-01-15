@@ -1,10 +1,8 @@
 export {}
 
-const linea = document.querySelector(".container");
+const linea = document.querySelector(".palito");
 const card = document.querySelector(".cardEchas");
 
 linea.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log("click");
-    card.classList.toggle("grid")
+    card.classList.toggle("grid");
 });

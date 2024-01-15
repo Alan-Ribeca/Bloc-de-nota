@@ -53,6 +53,7 @@ function generarTarjetas() {
         const btnRestaurar = document.createElement("button");
         btnRestaurar.innerHTML = "Restaurar";
         btnRestaurar.classList.add("restaurar")
+        btnRestaurar.style.display = "none"
         btnRestaurar.addEventListener("click", () => {
             btnRestaurar(tarjeta.id)
         })
@@ -192,31 +193,6 @@ function editarCard(id) {
     }
 }
 
-function actualizarTarjeta(id) {
-    const tarjetaExistente = tarjetas.find(tarjeta => tarjeta.id === id);
-
-    if (tarjetaExistente) {
-        // Actualizar contenido de la tarjeta existente
-        tarjetaExistente.h1 = h1Card.value;
-        tarjetaExistente.p = inputBloc.value;
-        tarjetaExistente.fontWeight = inputBloc.style.fontWeight;
-        tarjetaExistente.textDecoration = inputBloc.style.textDecoration;
-        tarjetaExistente.fontSize = inputBloc.style.fontSize;
-        tarjetaExistente.fontFamily = inputBloc.style.fontFamily;
-    } else {
-        // Agrega los datos de la nueva tarjeta al array
-        tarjetas.push({
-            id: ++cardId,
-            h1: h1Card.value,
-            p: inputBloc.value,
-            fontWeight: inputBloc.style.fontWeight,
-            textDecoration: inputBloc.style.textDecoration,
-            fontSize: inputBloc.style.fontSize,
-            fontFamily: inputBloc.style.fontFamily,
-        });
-    }
-}
-
 function botonEliminar(id) {
     // eliminar la card
     const tarjetaEliminada = tarjetas.find(tarjeta => tarjeta.id === id);
@@ -239,39 +215,6 @@ function botonEliminar(id) {
 
     generarTarjetas();
 }
-
-function btnRestaurar(id) { 
-    
-}
-
-function mostrarPapelera() {
-    const papeleraDiv = document.querySelector(".papeleraEchas");
-    papeleraDiv.innerHTML = "";
-
-    for (let tarjeta of papelera) {
-        const contenedorBloc = document.createElement("div");
-        contenedorBloc.classList.add("cardConTexto");
-        contenedorBloc.id = "card" + tarjeta.id;
-
-        const h1Input = document.createElement("H1");
-        h1Input.classList.add("h1Input");
-        h1Input.textContent = tarjeta.h1;
-        contenedorBloc.appendChild(h1Input);
-
-        const pInput = document.createElement("P");
-        pInput.classList.add("pInput");
-        pInput.textContent = tarjeta.p;
-        contenedorBloc.appendChild(pInput);
-
-        // Agregar evento al contenedor para redirigir a "./pages/papelera.html"
-        contenedorBloc.addEventListener("click", () => {
-            window.location.href = "./pages/papelera.html";
-        });
-
-        papeleraDiv.appendChild(contenedorBloc);
-    }
-}
-
 
 // TODO LO QUE ES DENTRO DEL BLOC (NEGRITA, TAMAÑO Y ESAS COSAS)
 const inputBloc = document.querySelector(".textarea");

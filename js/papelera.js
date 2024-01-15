@@ -1,6 +1,13 @@
 const papeleraDiv = document.querySelector(".papeleraEchas");
 let localPapelera = JSON.parse(localStorage.getItem("localPapelera")) || [];
 let tarjetas = JSON.parse(localStorage.getItem("tarjetas")) || [];
+const linea = document.querySelector(".palito");
+const card = document.querySelector(".papeleraEchas");
+
+linea.addEventListener("click", (e) => {
+    card.classList.toggle("grid");
+});
+
 
 function cargarLocalPapelera() {
     localPapelera = JSON.parse(localStorage.getItem("localPapelera")) || [];
@@ -39,6 +46,7 @@ function mostrarLocalPapelera() {
         const btnRestaurar = document.createElement("button");
         btnRestaurar.innerHTML = "Restaurar";
         btnRestaurar.classList.add("restaurar")
+        btnRestaurar.style.display = "block"
         btnRestaurar.addEventListener("click", () => {
             restaurarFuncion(tarjeta.id) 
         })
@@ -87,7 +95,7 @@ function mostrarMensaje(mensaje) {
 }
 
 const buscador = document.querySelector(".input");
-const main = document.querySelector(".bloc");
+const papeleraMensaje = document.querySelector(".papeleraEchas");
 buscador.addEventListener("keyup", (e) => {
     const busqueda = e.target.value.toLowerCase();
     const cards = document.querySelectorAll(".cardConTexto");
@@ -116,7 +124,7 @@ buscador.addEventListener("keyup", (e) => {
             TituloBusqueda.textContent = "Sin coincidencias. Revisa tu búsqueda.";
             TituloBusqueda.classList.add("mensaje-busqueda");
 
-            main.appendChild(TituloBusqueda);
+            papeleraMensaje.appendChild(TituloBusqueda);
         }
     } else {
         const mensaje = document.querySelector(".mensaje-busqueda");
