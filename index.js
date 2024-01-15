@@ -50,6 +50,13 @@ function generarTarjetas() {
             botonEliminar(tarjeta.id)
         })
 
+        const btnRestaurar = document.createElement("button");
+        btnRestaurar.innerHTML = "Restaurar";
+        btnRestaurar.classList.add("restaurar")
+        btnRestaurar.addEventListener("click", () => {
+            btnRestaurar(tarjeta.id)
+        })
+
         contenedorBloc.addEventListener("click", (event) => {
             if (event.target !== btnDelete) {
                 editarCard(tarjeta.id)
@@ -57,6 +64,7 @@ function generarTarjetas() {
         });
 
         contenedorBloc.appendChild(btnDelete);
+        contenedorBloc.appendChild(btnRestaurar)
         divHTML.appendChild(contenedorBloc);
     }
 }
@@ -230,6 +238,10 @@ function botonEliminar(id) {
     }
 
     generarTarjetas();
+}
+
+function btnRestaurar(id) { 
+    
 }
 
 function mostrarPapelera() {

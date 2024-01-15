@@ -1,5 +1,6 @@
 const papeleraDiv = document.querySelector(".papeleraEchas");
 let localPapelera = JSON.parse(localStorage.getItem("localPapelera")) || [];
+let tarjetas = JSON.parse(localStorage.getItem("tarjetas")) || [];
 
 function cargarLocalPapelera() {
     localPapelera = JSON.parse(localStorage.getItem("localPapelera")) || [];
@@ -28,7 +29,6 @@ function mostrarLocalPapelera() {
         pInput.textContent = tarjeta.p;
         contenedorBloc.appendChild(pInput);
 
-        // agregar bnt de eliminar en card
         const btnDelete = document.createElement("button");
         btnDelete.innerHTML = "Eliminar";
         btnDelete.classList.add("deleteCard")
@@ -36,23 +36,21 @@ function mostrarLocalPapelera() {
             botonEliminar(tarjeta.id)
         })
 
-        contenedorBloc.addEventListener("click", (event) => {
-            if (event.target !== btnDelete) {
-                editarCard(tarjeta.id)
-            }
-        });
+        const btnRestaurar = document.createElement("button");
+        btnRestaurar.innerHTML = "Restaurar";
+        btnRestaurar.classList.add("restaurar")
+        btnRestaurar.addEventListener("click", () => {
+            restaurarFuncion(tarjeta.id) 
+        })
 
         contenedorBloc.appendChild(btnDelete);
+        contenedorBloc.appendChild(btnRestaurar)
         papeleraDiv.appendChild(contenedorBloc);
     }
 
     if (localPapelera.length === 0) {
         mostrarMensaje(`Papelera vacia`)
     }
-}
-
-function editarCard(id) {
-    console.log(`Click en la tarjeta con ID: ${id}`);
 }
 
 function botonEliminar(id) {
@@ -64,6 +62,20 @@ function botonEliminar(id) {
 
         mostrarLocalPapelera();
     }
+}
+
+function restaurarFuncion(id) { 
+    const index = localPapelera.findIndex(tarjeta => tarjeta.id === id);
+
+    if (index !== -1) {
+        const tarjeta = localPapelera.splice(index, 1)[0];
+        tarjetas.push(tarjeta);
+
+        localStorage.setItem("localPapelera", JSON.stringify(localPapelera));
+        localStorage.setItem("tarjetas", JSON.stringify(tarjetas));
+
+    }
+    mostrarLocalPapelera()
 }
 
 function mostrarMensaje(mensaje) {
