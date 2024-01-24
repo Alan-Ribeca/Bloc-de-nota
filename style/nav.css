@@ -65,7 +65,7 @@
 }
 
 .input:focus,
-input:hover {
+.input:hover {
   outline: none;
   border-color: rgba(2, 196, 255, 0.4);
   background-color: #488bffd3;
@@ -92,6 +92,13 @@ input:hover {
   order: 1;
   margin-right: 15%;
 }
+
+@media screen and (max-width: 815px){
+  .container {
+    display: none;
+  }
+}
+
 
 .group {
   order: 2;

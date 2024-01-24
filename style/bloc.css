@@ -43,6 +43,13 @@
     margin-right: 25px;
 }
 
+@media screen and (max-width: 500px) {
+    
+    .letras p {
+        margin-left: 0;
+    }
+}
+
 .letras p:hover{
     cursor: pointer;
     color: #488AFF;

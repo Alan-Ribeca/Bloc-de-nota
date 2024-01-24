@@ -1,3 +1,9 @@
+@media screen and (max-width: 815px){
+  .container {
+    display: none;
+  }
+}
+
 .cardConTexto {
   padding: 2px 16px;
   height: 120px;
@@ -5,6 +11,12 @@
   border-radius: 7px;
   box-shadow: 3px 0px 5px 1px rgba(128, 144, 175, 0.664);
   position: relative;
+}
+
+@media screen and (max-width: 500px) {
+    .cardConTexto {
+      margin-bottom: 25px;
+    }
 }
 
 .cardConTexto:hover {
@@ -75,6 +87,15 @@
 /* display grid cuando apretan para cambiar la forma  */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1rem;
 }
+
+@media screen and (max-width: 400px) {
+  .grid {
+    grid-template-columns: 1fr; /* Cambiamos a una sola columna si el ancho es menor a 400px */
+    gap: 0;
+  }
+}
+
+
