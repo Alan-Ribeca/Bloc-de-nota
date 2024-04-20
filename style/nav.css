@@ -1,4 +1,9 @@
 /* linea */
+
+.nav {
+  margin: 0px 0.5rem;
+}
+
 .container input {
   opacity: 0;
   cursor: pointer;
