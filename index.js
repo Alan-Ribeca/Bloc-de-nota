@@ -1,4 +1,4 @@
-import {} from "./js/posicion.js"
+import { } from "./js/posicion.js"
 // variables
 const botonLapiz = document.querySelector(".editBtn");
 const bloc = document.querySelector(".notasBloc");
@@ -26,47 +26,56 @@ flechaGuardar.addEventListener("click", () => {
 // funciones
 function generarTarjetas() {
     const divHTML = document.querySelector(".cardEchas");
-    divHTML.innerHTML = "";
-    for (let tarjeta of tarjetas) {
-        const contenedorBloc = document.createElement("div");
-        contenedorBloc.classList.add("cardConTexto");
-        contenedorBloc.id = "card" + tarjeta.id;
+    divHTML.innerHTML = ""; 
 
-        const h1Input = document.createElement("H1");
-        h1Input.classList.add("h1Input");
-        h1Input.textContent = tarjeta.h1;
-        contenedorBloc.appendChild(h1Input);
+    if (tarjetas.length === 0) {
+        const h1 = document.createElement("h1");
+        h1.classList.add("sinTarjeta");
+        h1.textContent = "Precione el lapiz para crear su nota";
 
-        const pInput = document.createElement("P");
-        pInput.classList.add("pInput");
-        pInput.textContent = tarjeta.p;
-        contenedorBloc.appendChild(pInput);
+        divHTML.appendChild(h1);
+    } else {
+        for (let tarjeta of tarjetas) {
+            const contenedorBloc = document.createElement("div");
+            contenedorBloc.classList.add("cardConTexto");
+            contenedorBloc.id = "card" + tarjeta.id;
 
-        // agregar bnt de eliminar en card
-        const btnDelete = document.createElement("button");
-        btnDelete.innerHTML = "Eliminar";
-        btnDelete.classList.add("deleteCard")
-        btnDelete.addEventListener("click", () => {
-            botonEliminar(tarjeta.id)
-        })
+            const h1Input = document.createElement("h1");
+            h1Input.classList.add("h1Input");
+            h1Input.textContent = tarjeta.h1;
+            contenedorBloc.appendChild(h1Input);
 
-        const btnRestaurar = document.createElement("button");
-        btnRestaurar.innerHTML = "Restaurar";
-        btnRestaurar.classList.add("restaurar")
-        btnRestaurar.style.display = "none"
-        btnRestaurar.addEventListener("click", () => {
-            btnRestaurar(tarjeta.id)
-        })
+            const pInput = document.createElement("p");
+            pInput.classList.add("pInput");
+            pInput.textContent = tarjeta.p;
+            contenedorBloc.appendChild(pInput);
 
-        contenedorBloc.addEventListener("click", (event) => {
-            if (event.target !== btnDelete) {
-                editarCard(tarjeta.id)
-            }
-        });
+            // agregar bnt de eliminar en card
+            const btnDelete = document.createElement("button");
+            btnDelete.innerHTML = "Eliminar";
+            btnDelete.classList.add("deleteCard");
+            btnDelete.addEventListener("click", () => {
+                botonEliminar(tarjeta.id);
+            });
 
-        contenedorBloc.appendChild(btnDelete);
-        contenedorBloc.appendChild(btnRestaurar)
-        divHTML.appendChild(contenedorBloc);
+            const btnRestaurar = document.createElement("button");
+            btnRestaurar.innerHTML = "Restaurar";
+            btnRestaurar.classList.add("restaurar");
+            btnRestaurar.style.display = "none";
+            btnRestaurar.addEventListener("click", () => {
+                btnRestaurar(tarjeta.id);
+            });
+
+            contenedorBloc.addEventListener("click", (event) => {
+                if (event.target !== btnDelete) {
+                    editarCard(tarjeta.id);
+                }
+            });
+
+            contenedorBloc.appendChild(btnDelete);
+            contenedorBloc.appendChild(btnRestaurar);
+            divHTML.appendChild(contenedorBloc);
+        }
     }
 }
 
@@ -313,7 +322,7 @@ buscador.addEventListener("keyup", (e) => {
     const cards = document.querySelectorAll(".cardConTexto");
     let resultadoBusqueda = false;
 
-    if (e.key === "Escape"){
+    if (e.key === "Escape") {
         e.target.value = "";
         for (let card of cards) {
             card.style.display = "";
@@ -330,12 +339,12 @@ buscador.addEventListener("keyup", (e) => {
         }
     }
 
-    if(!resultadoBusqueda && busqueda !== "" && e.key !== "Escape") {
+    if (!resultadoBusqueda && busqueda !== "" && e.key !== "Escape") {
         if (!document.querySelector(".mensaje-busqueda")) {
             const TituloBusqueda = document.createElement("p");
             TituloBusqueda.textContent = "Sin coincidencias. Revisa tu búsqueda.";
             TituloBusqueda.classList.add("mensaje-busqueda");
-    
+
             main.appendChild(TituloBusqueda);
         }
     } else {
@@ -346,6 +355,6 @@ buscador.addEventListener("keyup", (e) => {
     }
 });
 
-buscador.addEventListener("blur", function() {
-    this.value = ""; 
+buscador.addEventListener("blur", function () {
+    this.value = "";
 });

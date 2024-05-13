@@ -33,3 +33,13 @@ body {
 .h1Principal{
   color: #488AFF;
 }
+
+
+.sinTarjeta {
+  text-align: center;
+}
+
+.sinTarjetaA {
+  color: #488AFF; 
+  font-weight: 800;
+}
